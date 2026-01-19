@@ -1,0 +1,49 @@
+---
+import CardProjects from '@/components/CardProjects.astro'
+
+const projects = [
+  {
+    title:
+      'Strengthen 8club to become the one stop solution for Hosting and managing events.',
+    role: 'Product Designer & Frontend Developer',
+    timeline: 'Jan 2023 - Present',
+    image:
+      'https://framerusercontent.com/images/FRSPOBRrDXpi2XcJTDwtwwkn9cU.png?scale-down-to=512&width=1632&height=1632',
+    url_site: '#',
+  },
+  {
+    title: 'Evolution of Experimentation at RazorpayThe Art of Trial & Error!',
+    role: 'Product Designer & Frontend Developer',
+    timeline: 'Jan 2022 - Dec 2022',
+
+    image:
+      'https://framerusercontent.com/images/IYqwhA3EjJgCOOl3FXcQcCyJ7Y.png?scale-down-to=512&width=1224&height=1224',
+    url_site: '#',
+  },
+]
+---
+
+<section
+  class="py-24 max-w-7xl mx-auto w-full flex flex-col gap-8 items-center"
+>
+  <h2 class="text-5xl font-bold mb-8">Works</h2>
+  <div class="space-y-16 w-full">
+    {
+      projects.map((project) => (
+        <CardProjects
+          title={project.title}
+          url_site={project.url_site}
+          role={project.role}
+          timeline={project.timeline}
+          image={project.image}
+        />
+      ))
+    }
+  </div>
+
+  <a
+    href="#"
+    class="px-4 py-2 bg-primary rounded-full text-white hover:bg-primary-hover transition-colors duration-300"
+    >Ver todos los proyectos</a
+  >
+</section>

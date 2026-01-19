@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string
+  index: number
+}
+
+const { title, index } = Astro.props
+---
+
+<div
+  class={`flex items-center justify-center gap-4 p-6 bg-background/20 backdrop-blur-sm rounded-lg hover:bg-background/80 transition-colors duration-300 ${index === 1 ? '-translate-y-8' : 'translate-y-0'}`}
+>
+  <slot name="icon" />
+
+  <div class="flex flex-col gap-2 flex-2">
+    <h3 class="text-text-primary font-bold shadow-primary">{title}</h3>
+    <p class="text-text-secondary text-sm"><slot /></p>
+  </div>
+</div>

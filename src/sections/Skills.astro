@@ -1,0 +1,207 @@
+---
+import Tabs from '@/components/Tabs.astro'
+
+// Import Frontend icons
+import AstroIcon from '@/assets/icons/astro.astro'
+import CssIcon from '@/assets/icons/css.astro'
+import JsIcon from '@/assets/icons/js.astro'
+import NextIcon from '@/assets/icons/next.astro'
+import ReactIcon from '@/assets/icons/react.astro'
+import ReactNativeIcon from '@/assets/icons/reactNative.astro'
+import TailwindIcon from '@/assets/icons/tailwind.astro'
+import ThreejsIcon from '@/assets/icons/threejs.astro'
+
+// Import Backend icons
+import AuthjsIcon from '@/assets/icons/authjs.astro'
+import FirebaseIcon from '@/assets/icons/firebase.astro'
+import MySQLIcon from '@/assets/icons/mySQL.astro'
+import NodejsIcon from '@/assets/icons/nodejs.astro'
+import PrismaIcon from '@/assets/icons/prisma.astro'
+import StripeIcon from '@/assets/icons/stripe.astro'
+import SupabaseIcon from '@/assets/icons/supabase.astro'
+
+// Import Web Design icons
+import CodeIcon from '@/assets/icons/code.astro'
+import UserIcon from '@/assets/icons/user.astro'
+
+// Import Tools icons
+import AwsIcon from '@/assets/icons/aws.astro'
+import DiscordIcon from '@/assets/icons/discord.astro'
+import FigmaIcon from '@/assets/icons/figma.astro'
+import GitIcon from '@/assets/icons/git.astro'
+import GithubIcon from '@/assets/icons/github.astro'
+import GoogleDriveIcon from '@/assets/icons/googleDrive.astro'
+import NotionIcon from '@/assets/icons/notion.astro'
+import NpmIcon from '@/assets/icons/npm.astro'
+import PnpmIcon from '@/assets/icons/pnpm.astro'
+import SlackIcon from '@/assets/icons/slack.astro'
+import VscodeIcon from '@/assets/icons/vscode.astro'
+
+const tabs = [
+  { id: 'web-design', label: 'Diseño Web' },
+  { id: 'frontend', label: 'Frontend' },
+  { id: 'backend', label: 'Backend' },
+  { id: 'tools', label: 'Herramientas' },
+]
+
+const webDesignSkills = [
+  { name: 'UI/UX Design', icon: 'figma' },
+  { name: 'Responsive Design', icon: 'code' },
+  { name: 'User Research', icon: 'user' },
+]
+
+const frontendSkills = [
+  { name: 'React', icon: 'react' },
+  { name: 'React Native', icon: 'reactNative' },
+  { name: 'Next.js', icon: 'next' },
+  { name: 'Astro', icon: 'astro' },
+  { name: 'JavaScript', icon: 'js' },
+  { name: 'CSS', icon: 'css' },
+  { name: 'Tailwind', icon: 'tailwind' },
+  { name: 'Three.js', icon: 'threejs' },
+]
+
+const backendSkills = [
+  { name: 'Node.js', icon: 'nodejs' },
+  { name: 'Prisma', icon: 'prisma' },
+  { name: 'Auth.js', icon: 'authjs' },
+  { name: 'MySQL', icon: 'mysql' },
+  { name: 'Firebase', icon: 'firebase' },
+  { name: 'Supabase', icon: 'supabase' },
+  { name: 'Stripe', icon: 'stripe' },
+]
+
+const toolsSkills = [
+  { name: 'Git', icon: 'git' },
+  { name: 'GitHub', icon: 'github' },
+  { name: 'npm', icon: 'npm' },
+  { name: 'pnpm', icon: 'pnpm' },
+  { name: 'VS Code', icon: 'vscode' },
+  { name: 'Figma', icon: 'figma' },
+  { name: 'Notion', icon: 'notion' },
+  { name: 'AWS', icon: 'aws' },
+  { name: 'Discord', icon: 'discord' },
+  { name: 'Slack', icon: 'slack' },
+  { name: 'Google Drive', icon: 'googleDrive' },
+]
+---
+
+<section class="py-20 max-w-7xl mx-auto px-4">
+  <div class="text-center space-y-2.5 mb-16">
+    <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold">Habilidades</h2>
+  </div>
+
+  <Tabs tabs={tabs} defaultTab="frontend">
+    <!-- Web Design Tab Content -->
+    <div class="tab-content hidden" data-tab-content="web-design">
+      <div
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
+      >
+        {
+          webDesignSkills.map((skill) => (
+            <div class="skill-card group flex flex-col items-center justify-center gap-3 p-6 bg-transparent border border-border rounded-lg hover:border-white/85 hover:scale-105 transition-all duration-300">
+              <div class="text-primary group-hover:scale-110 group-hover:text-white transition-all duration-300">
+                {skill.icon === 'figma' && <FigmaIcon />}
+                {skill.icon === 'code' && <CodeIcon />}
+                {skill.icon === 'user' && <UserIcon />}
+              </div>
+              <span class="text-sm text-text group-hover:text-text-primary transition-colors duration-300">
+                {skill.name}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Frontend Tab Content -->
+    <div class="tab-content" data-tab-content="frontend">
+      <div
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
+      >
+        {
+          frontendSkills.map((skill) => (
+            <div class="skill-card group flex flex-col items-center justify-center gap-3 p-6 bg-transparent border border-border rounded-lg hover:border-white/85 hover:scale-105 transition-all duration-300">
+              <div class="text-primary group-hover:scale-110 group-hover:text-white transition-all duration-300">
+                {skill.icon === 'react' && <ReactIcon />}
+                {skill.icon === 'reactNative' && <ReactNativeIcon />}
+                {skill.icon === 'next' && <NextIcon />}
+                {skill.icon === 'astro' && <AstroIcon />}
+                {skill.icon === 'js' && <JsIcon />}
+                {skill.icon === 'css' && <CssIcon />}
+                {skill.icon === 'tailwind' && <TailwindIcon />}
+                {skill.icon === 'threejs' && <ThreejsIcon />}
+              </div>
+              <span class="text-sm text-text group-hover:text-text-primary transition-colors duration-300">
+                {skill.name}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Backend Tab Content -->
+    <div class="tab-content hidden" data-tab-content="backend">
+      <div
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
+      >
+        {
+          backendSkills.map((skill) => (
+            <div class="skill-card group flex flex-col items-center justify-center gap-3 p-6 bg-transparent border border-border rounded-lg hover:border-white/85 hover:scale-105 transition-all duration-300">
+              <div class="text-primary group-hover:scale-110 group-hover:text-white transition-all duration-300">
+                {skill.icon === 'nodejs' && <NodejsIcon />}
+                {skill.icon === 'prisma' && <PrismaIcon />}
+                {skill.icon === 'authjs' && <AuthjsIcon />}
+                {skill.icon === 'mysql' && <MySQLIcon />}
+                {skill.icon === 'firebase' && <FirebaseIcon />}
+                {skill.icon === 'supabase' && <SupabaseIcon />}
+                {skill.icon === 'stripe' && <StripeIcon />}
+              </div>
+              <span class="text-sm text-text group-hover:text-text-primary transition-colors duration-300">
+                {skill.name}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Tools Tab Content -->
+    <div class="tab-content hidden" data-tab-content="tools">
+      <div
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
+      >
+        {
+          toolsSkills.map((skill) => (
+            <div class="skill-card group flex flex-col items-center justify-center gap-3 p-6 bg-transparent border border-border rounded-lg hover:border-white/85 hover:scale-105 transition-all duration-300">
+              <div class="text-primary group-hover:scale-110 group-hover:text-white transition-all duration-300">
+                {skill.icon === 'git' && <GitIcon />}
+                {skill.icon === 'github' && <GithubIcon />}
+                {skill.icon === 'npm' && <NpmIcon />}
+                {skill.icon === 'pnpm' && <PnpmIcon />}
+                {skill.icon === 'vscode' && <VscodeIcon />}
+                {skill.icon === 'figma' && <FigmaIcon />}
+                {skill.icon === 'notion' && <NotionIcon />}
+                {skill.icon === 'aws' && <AwsIcon />}
+                {skill.icon === 'discord' && <DiscordIcon />}
+                {skill.icon === 'slack' && <SlackIcon />}
+                {skill.icon === 'googleDrive' && <GoogleDriveIcon />}
+              </div>
+              <span class="text-sm text-text group-hover:text-text-primary transition-colors duration-300">
+                {skill.name}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Tabs>
+</section>
+
+<style>
+  .skill-card :global(svg) {
+    width: 48px;
+    height: 48px;
+  }
+</style>

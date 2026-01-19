@@ -1,0 +1,99 @@
+---
+interface Tab {
+  id: string
+  label: string
+}
+
+interface Props {
+  tabs: Tab[]
+  defaultTab?: string
+}
+
+const { tabs, defaultTab = tabs[0]?.id } = Astro.props
+---
+
+<div class="tabs-container w-full">
+  <!-- Tab Navigation -->
+  <div
+    class="flex gap-2 mb-8 border-b border-border pb-2 justify-center flex-wrap"
+  >
+    {
+      tabs.map((tab) => (
+        <button
+          class={`tab-button px-6 py-3 rounded-t-lg font-semibold transition-all duration-300 ${
+            tab.id === defaultTab
+              ? 'bg-primary text-text-inverse shadow-glow'
+              : 'text-text-secondary hover:text-text-primary hover:bg-background-secondary'
+          }`}
+          data-tab={tab.id}
+        >
+          {tab.label}
+        </button>
+      ))
+    }
+  </div>
+
+  <!-- Tab Content -->
+  <div class="tab-content-container">
+    <slot />
+  </div>
+</div>
+
+<script is:inline>
+  function initTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button')
+    const tabContents = document.querySelectorAll('.tab-content')
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const tabId = button.getAttribute('data-tab')
+
+        // Update active button
+        tabButtons.forEach((btn) => {
+          btn.classList.remove('bg-primary', 'text-text-inverse', 'shadow-glow')
+          btn.classList.add('text-text-secondary')
+        })
+        button.classList.add('bg-primary', 'text-text-inverse', 'shadow-glow')
+        button.classList.remove('text-text-secondary')
+
+        // Update visible content
+        tabContents.forEach((content) => {
+          if (content.getAttribute('data-tab-content') === tabId) {
+            content.classList.remove('hidden')
+            content.classList.add('animate-fade-in')
+          } else {
+            content.classList.add('hidden')
+            content.classList.remove('animate-fade-in')
+          }
+        })
+      })
+    })
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTabs)
+  } else {
+    initTabs()
+  }
+
+  // Re-initialize on Astro page transitions
+  document.addEventListener('astro:page-load', initTabs)
+</script>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+</style>

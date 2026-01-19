@@ -1,0 +1,67 @@
+@import 'tailwindcss';
+
+@theme {
+  /* -------- No tocar ----------- */
+  /* === Primary Colors === */
+  --color-primary: hsl(0, 0%, 13%);
+
+  /* === Secondary Colors === */
+  --color-secondary: hsl(0, 0%, 48%);
+  /* === Tertiary Colors === */
+  --color-tertiary: hsl(0, 0%, 97%);
+  /* === White Color === */
+  --color-white: hsl(0, 0%, 100%);
+
+  /* ------------------- */
+
+  /* === Text Colors === */
+  --color-text: hsl(0, 0%, 95%);
+  --color-muted-text: hsl(0, 0%, 60%);
+
+  /* === Background Colors === */
+  --color-background: hsl(0, 0%, 6%);
+  --color-background-card: hsl(0, 0%, 10%);
+
+  /* === Accent Colors === */
+  --color-accent: hsl(220, 90%, 60%);
+  --color-accent-hover: hsl(220, 90%, 70%);
+
+  /* === Border Colors === */
+  --color-border: hsl(0, 0%, 20%);
+  --color-border-hover: hsl(0, 0%, 35%);
+
+  /* === Surface Colors === */
+  --color-surface: hsl(0, 0%, 8%);
+  --color-surface-elevated: hsl(0, 0%, 12%);
+  --color-overlay: hsla(0, 0%, 0%, 0.7);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  @apply bg-background text-text;
+  letter-spacing: 1px;
+}
+
+strong {
+  @apply text-white font-bold tracking-wider;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}

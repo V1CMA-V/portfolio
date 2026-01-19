@@ -1,0 +1,194 @@
+---
+import Instragram from '@/assets/icons/instragram.astro'
+import Linkedin from '@/assets/icons/linkedin.astro'
+import Menu from '@/assets/icons/menu.astro'
+import X from '@/assets/icons/x.astro'
+
+const { pathname } = Astro.url
+
+const isActive = (path: string) => pathname === path
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/work', label: 'Work' },
+  { href: '/about', label: 'About Me' },
+  { href: '/contact', label: 'Contact' },
+]
+
+const avalible = true
+---
+
+<header
+  class="w-full mx-auto flex items-center justify-between py-4 px-3 fixed top-0 left-0 right-0 z-50"
+>
+  <div class="max-w-7xl w-full mx-auto flex items-center justify-between">
+    <a href="/">
+      <h3 class="text-sm tracking-wider">VÍCTOR MARTÍNEZ</h3>
+      <p class="text-muted-text text-sm">Freelance Web Developer</p>
+    </a>
+
+    <nav class="gap-4 hidden md:flex">
+      <ul
+        class="flex gap-4 text-text-secondary px-1 py-1 bg-primary rounded-full"
+      >
+        {
+          links.map(({ href, label }) => (
+            <li
+              class={`${isActive(href) ? 'bg-secondary/50' : ''} rounded-full px-3 py-1 hover:bg-secondary/30 transition-colors duration-300`}
+            >
+              <a href={href} class="w-full">
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="hidden md:flex items-center gap-4">
+      <p
+        class={`text-sm font-medium ${avalible ? 'text-green-500' : 'text-red-500'}`}
+      >
+        <span
+          class="inline-block align-middle mx-1 w-2 h-2 rounded-full bg-current"
+        ></span>
+        {avalible ? 'Disponible' : 'No disponible'}
+      </p>
+
+      <a
+        href="#"
+        class="text-muted-text hover:text-accent transition-colors duration-200"
+        ><Linkedin /></a
+      >
+      <a
+        href="#"
+        class="text-muted-text hover:text-text transition-colors duration-200"
+        ><Instragram /></a
+      >
+    </div>
+
+    <button
+      id="mobile-menu-toggle"
+      class="md:hidden text-text"
+      aria-label="Toggle menu"
+    >
+      <Menu />
+    </button>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="h-dvh bg-secondary w-full fixed top-0 left-0 z-50 translate-x-full transition-transform duration-300 md:hidden"
+  >
+    <div class="relative w-full h-full flex flex-col">
+      <nav class="flex items-center justify-center flex-1 py-4 w-full">
+        <ul class="flex flex-col gap-4 text-text text-5xl sm:text-7xl">
+          {
+            links.map(({ href, label }) => (
+              <li class={`text-center rounded-full px-3 py-1 ${isActive(href) ? 'bg-background/50' : ''}`}>
+                <a href={href} class="mobile-menu-link w-full block">
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Social and status section in mobile -->
+      <div class="flex flex-col items-center gap-6 pb-20">
+        <p
+          class={`text-base font-medium ${avalible ? 'text-green-500' : 'text-red-500'}`}
+        >
+          <span
+            class="inline-block align-middle mx-1 w-2 h-2 rounded-full bg-current"
+          ></span>
+          {avalible ? 'Disponible' : 'No disponible'}
+        </p>
+
+        <div class="flex items-center gap-6">
+          <a
+            href="#"
+            class="text-text hover:text-accent transition-colors duration-200"
+            ><Linkedin size={50} /></a
+          >
+          <a
+            href="#"
+            class="text-text hover:text-muted-text transition-colors duration-200"
+            ><Instragram size={50} /></a
+          >
+        </div>
+      </div>
+
+      <button
+        id="mobile-menu-close"
+        class="text-text absolute right-0 top-0 m-4 hover:text-accent transition-colors duration-200"
+        aria-label="Close menu"
+      >
+        <X size={50} />
+      </button>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  function initMobileMenu() {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle')
+    const mobileMenuClose = document.getElementById('mobile-menu-close')
+    const mobileMenu = document.getElementById('mobile-menu')
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link')
+
+    if (!mobileMenuToggle || !mobileMenuClose || !mobileMenu) return
+
+    // Open mobile menu
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.remove('translate-x-full')
+      document.body.style.overflow = 'hidden'
+    })
+
+    // Close mobile menu
+    const closeMenu = () => {
+      mobileMenu.classList.add('translate-x-full')
+      document.body.style.overflow = ''
+    }
+
+    mobileMenuClose.addEventListener('click', closeMenu)
+
+    // Close menu when clicking on a link
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener('click', closeMenu)
+    })
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu)
+  } else {
+    initMobileMenu()
+  }
+
+  // Re-initialize on Astro page transitions
+  document.addEventListener('astro:page-load', initMobileMenu)
+</script>
+
+<style>
+  header {
+    background: transparent;
+    animation: background-header 0.3s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 250px;
+    border-bottom: 1px solid transparent;
+  }
+
+  @keyframes background-header {
+    from {
+      background: transparent;
+    }
+    to {
+      background: var(--color-background/15);
+      backdrop-filter: blur(5px);
+      border-radius: 16px;
+    }
+  }
+</script>
